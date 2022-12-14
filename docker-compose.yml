@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    container_name: postgres-db
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    networks:
+      - cloud-network
+    volumes:
+      - db-volume:/var/lib/postgres/data
+    
+ 
+
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 8081:8080
+    networks:
+      - cloud-network
+    depends_on:
+      - db
+
+
+
+
+networks:
+    cloud-network:
+        driver: bridge
+
+volumes:
+    cloud-volume:
+    db-volume:
