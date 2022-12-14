@@ -6,14 +6,35 @@ services:
     container_name: postgres-db
     environment:
       - POSTGRES_DB=postgres
+      - POSTGRES_ROOT_PASSWORD=StrongPassword
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
+      
     networks:
       - cloud-network
     volumes:
       - db-volume:/var/lib/postgres/data
     
- 
+  web:
+    image: nextcloud
+    container_name: nextcloud
+    hostname: nextcloud.domain.com
+    links:
+      - db
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      
+    networks:
+      - cloud-network
+    ports:
+      - 8080:80
+    volumes:
+      - cloud-volume:/var/www/html
+    depends_on:
+      - db
 
 
   adminer:
