@@ -2,13 +2,13 @@ version: '3.9'
 
 services:
   db:
-    image: postgres
+    image: postgres:15-alpine
     container_name: postgres-db
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_ROOT_PASSWORD=StrongPassword
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin
+       - POSTGRES_DB=postgres
+       - POSTGRES_ROOT_PASSWORD=root
+       - POSTGRES_USER=admin
+       - POSTGRES_PASSWORD=Leadec123!
       
     networks:
       - cloud-network
@@ -25,7 +25,7 @@ services:
       - POSTGRES_HOST=db
       - POSTGRES_DB=postgres
       - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin
+      - POSTGRES_PASSWORD=Leadec123!
       
     networks:
       - cloud-network
