@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
-    CREATE USER admin;
-    CREATE DATABASE postgres;
-    GRANT ALL PRIVILEGES ON DATABASE postgres TO admin;
+psql -v ON_ERROR_STOP=1 --username "admin" --dbname "postgres" <<-EOSQL
+   GRANT ALL PRIVILEGES ON DATABASE postgres TO admin;
 EOSQL
