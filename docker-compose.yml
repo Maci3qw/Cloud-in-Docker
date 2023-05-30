@@ -1,5 +1,7 @@
+#Configuration file
 version: '3.9'
 
+#Service 
 services:
   db:
     image: postgres-image
@@ -14,7 +16,7 @@ services:
       - cloud-network
     volumes:
       - db-volume:/var/lib/postgres/data
-    
+#Web
   web:
     image: nextcloud
     container_name: nextcloud
@@ -38,7 +40,7 @@ services:
     depends_on:
       - db
 
-
+#Admin
   adminer:
     image: adminer
     container_name: adminer
